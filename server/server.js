@@ -1,13 +1,11 @@
 const express = require('express');
+const app = express();
 const bodyParser = require('body-parser');
 const cors = require('cors');
-const dotenv = require('dotenv');
-
-const app = express();
-dotenv.config();
+const http = require('http');
 
 //PORT
-const PORT = process.env.PORT || 3000;
+// const PORT = process.env.PORT || 3000;
 // command - "export PORT=3000"
 
 /*
@@ -19,16 +17,24 @@ app.delete()
 */
 
 // Using JSON to read data
-app.use(express.json());
+// app.use(express.json());
 
-app.listen(PORT, () =>
-  console.log(`server running on http://localhost:${PORT}`)
-);
+app.use(cors());
 
-app.get('/', (req, res) => {
-  res.send('hello');
+const server = http.createServer(app);
+
+server.listen(3001, () => {
+  console.log('SERVER RUNNNING');
 });
 
-app.get('/api/array', (req, res) => {
-  res.send([1, 5, 6]);
-});
+// app.listen(PORT, () =>
+//   console.log(`server running on http://localhost:${PORT}`)
+// );
+
+// app.get('/', (req, res) => {
+//   res.send('hello');
+// });
+
+// app.get('/api/array', (req, res) => {
+//   res.send([1, 5, 6]);
+// });
