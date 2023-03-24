@@ -20,12 +20,23 @@ const io = new Server(server, {
 io.on("connection", (socket) =>{
   console.log(`User: ${socket.id} is connected.`)
 
-  socket.on("send_msg", (data)=>{
-    socket.broadcast.emit("recieved_msg", data)
-    console.log(data)
+  socket.on("join_group", (data) => {
+    socket.join(data);
+    console.log(`User ${socket.id} joined group ${data}`)
   });
+
+  socket.on("send_msg", (data)=>{
+    socket.to(data.messageData.group).emit("recieved_msg", data.messageData.message)
+  });
+
+  // User disconnects
+  socket.on("disconnect", () =>{
+    console.log(`User ${socket.id} has disconnected.`)
+  })
 });
 
+
+io
 
 // // Importing routes
 // import indexRouter from './routes/indexRouter.js';

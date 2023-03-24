@@ -1,35 +1,41 @@
-
-import { useEffect, useState } from 'react';
 import './App.css';
+import { useState } from 'react';
 import io from "socket.io-client"
+import Chat from './Chat.js';
 const socket = io.connect("http://localhost:3001")
 
 
 function App() {
-  const [message, setMessage] = useState("");
-  const [messageRecieved, setMessageRecieved] = useState("");
-  // Emit event listener
-  const sendMessage = () =>{
-    socket.emit("send_msg", {message})
-  };
-  
-  // Message recieved to user
-  useEffect(() =>{
-    socket.on("recieved_msg", (data) => {
-      // setMessageRecieved
-      setMessageRecieved(data.message)
-    })
-  }, [socket]);
+  const [username, setUsername] = useState("");
+  const [group, setGroup] = useState("");
+
+  const joinGroup = () =>{
+    if (username !== "" && group !== ""){
+      socket.emit("join_group", group)
+    }
+  }
 
   return (
     <div className="App">
-     <input placeholder="Message..." onChange={(event)=>{
-      setMessage(event.target.value);
-     }}/>
-     <button onClick={sendMessage}>Send message</button>
-     <p>Message: </p>
+    <h3>Message app</h3>
+    <input
+      type = "text" 
+      placeholder="Username:" 
+      onChange={(event)=>{
+        setUsername(event.target.value);
+      }}
+    />
 
-     {messageRecieved}
+    <input
+      type = "text" 
+      placeholder="Group name" 
+      onChange={(event)=>{
+        setGroup(event.target.value);
+      }}
+    />
+    <button onClick={joinGroup}> Join Group </button>
+
+     <Chat socket={socket} username={username} groupchat={group}/>
     </div>
   );
 }
