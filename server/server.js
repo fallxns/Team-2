@@ -2,7 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const http = require('http');
-const {Server} = require('socket.io');
+const { Server } = require('socket.io');
 
 const app = express();
 const server = http.createServer(app);
@@ -10,33 +10,35 @@ const server = http.createServer(app);
 app.use(cors());
 
 const io = new Server(server, {
-  cors:{
-    origin: "http://localhost:3000",
-    methods: ["GET", "POST"]
-  }
+  cors: {
+    origin: 'http://localhost:3000',
+    methods: ['GET', 'POST'],
+  },
 });
 
 // Detecting user connections
-io.on("connection", (socket) =>{
-  console.log(`User: ${socket.id} is connected.`)
+io.on('connection', (socket) => {
+  console.log(`User: ${socket.id} is connected.`);
 
-  socket.on("join_group", (data) => {
+  socket.on('join_group', (data) => {
     socket.join(data);
-    console.log(`User ${socket.id} joined group ${data}`)
+    console.log(`User ${socket.id} joined group ${data}`);
   });
 
-  socket.on("send_msg", (data)=>{
-    socket.to(data.messageData.group).emit("recieved_msg", data.messageData.message)
+  socket.on('send_msg', (data) => {
+    socket
+      .to(data.messageData.group)
+      .emit('recieved_msg', data.messageData.message);
+    console.log(data);
   });
 
   // User disconnects
-  socket.on("disconnect", () =>{
-    console.log(`User ${socket.id} has disconnected.`)
-  })
+  socket.on('disconnect', () => {
+    console.log(`User ${socket.id} has disconnected.`);
+  });
 });
 
-
-io
+io;
 
 // // Importing routes
 // import indexRouter from './routes/indexRouter.js';
@@ -68,8 +70,6 @@ app.post('/users', (req, res) => {
 app.get('/', (req, res) => {
   res.send('API DATA');
 });
-
-
 
 // 404 Catch
 app.use('*', (req, res) => {
