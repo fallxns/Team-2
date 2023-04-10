@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Data Analytics Dashboard</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" />
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
+</head>
+<body>
+	<header>
+		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+			<a class="navbar-brand" href="#">Data Analytics Dashboard</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarNav">
+				<ul class="navbar-nav">
+					<li class="nav-item active">
+						<a class="nav-link" href="#">Dashboard</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="#">Reports</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="#">Settings</a>
+					</li>
+				</ul>
+			</div>
+		</nav>
+	</header>
+	<div class="container">
+		<h1>Data Analytics Dashboard</h1>
+		<p>View team sales data and identify areas for improvement.</p>
+		<div class="row">
+			<div class="col-md-4">
+				<div class="card">
+					<div class="card-header">
+						<h4>Team A Sales</h4>
+					</div>
+					<div class="card-body">
+						<canvas id="teamASalesChart"></canvas>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-4">
+				<div class="card">
+					<div class="card-header">
+						<h4>Team B Sales</h4>
+					</div>
+					<div class="card-body">
+						<canvas id="teamBSalesChart"></canvas>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-4">
+				<div class="card">
+					<div class="card-header">
+						<h4>Team C Sales</h4>
+					</div>
+					<div class="card-body">
+						<canvas id="teamCSalesChart"></canvas>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+    
+	<script>
+		// Dummy data for Team A sales
+		var teamASalesData = {
+			labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+			datasets: [{
+				label: 'Sales',
+				data: [12000, 15000, 18000, 20000, 22000, 24000],
+				backgroundColor: 'rgba(54, 162, 235, 0.2)',
+				borderColor: 'rgba(54, 162, 235, 1)',
+				borderWidth: 1
+			}]
+		};
+
+		// Dummy data for Team B sales
+		var teamBSalesData = {
+			labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+			datasets: [{
+				label: 'Sales',
+				data: [8000, 10000, 12000, 15000, 17000, 19000],
+				backgroundColor: 'rgba(255, 206, 86, 0.2)',
+				borderColor: 'rgba(255, 206, 86, 1)',
+				borderWidth: 1
+			}]
+		};
+
+		// Dummy data for Team C sales
+		var teamCSalesData = {
+			labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+			datasets: [{
+				label: 'Sales',
+				data: [5000, 8000, 10000, 12000, 14000, 16000],
+				backgroundColor: 'rgba(255, 99, 132, 0.2)',
+				borderColor: 'rgba(255, 99, 132, 1)',
+                borderWidth: 1
+            }]
+        };
+	// Create a new chart instance for Team A sales
+	var teamASalesChart = new Chart(document.getElementById('teamASalesChart'), {
+		type: 'line',
+		data: teamASalesData,
+		options: {
+			responsive: true,
+			maintainAspectRatio: false,
+			title: {
+				display: true,
+				text: 'Team A Sales'
+			},
+			scales: {
+				yAxes: [{
+					ticks: {
+						beginAtZero: true
+					}
+				}]
+			}
+		}
+	});
+
+	// Create a new chart instance for Team B sales
+	var teamBSalesChart = new Chart(document.getElementById('teamBSalesChart'), {
+		type: 'line',
+		data: teamBSalesData,
+		options: {
+			responsive: true,
+			maintainAspectRatio: false,
+			title: {
+				display: true,
+				text: 'Team B Sales'
+			},
+			scales: {
+				yAxes: [{
+					ticks: {
+						beginAtZero: true
+					}
+				}]
+			}
+		}
+	});
+
+	// Create a new chart instance for Team C sales
+	var teamCSalesChart = new Chart(document.getElementById('teamCSalesChart'), {
+		type: 'line',
+		data: teamCSalesData,
+		options: {
+			responsive: true,
+			maintainAspectRatio: false,
+			title: {
+				display: true,
+				text: 'Team C Sales'
+			},
+			scales: {
+				yAxes: [{
+					ticks: {
+						beginAtZero: true
+					}
+				}]
+			}
+		}
+	});
+    </script>
+</body>
+</html>
