@@ -19,7 +19,6 @@ if ($conn->connect_error) {
 //sql query
 $sql = "SELECT * FROM accounts";
 
-
 $result = $conn->query($sql);
 $found = false;
 

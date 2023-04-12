@@ -1,8 +1,6 @@
 const express = require('express');
 const app = express();
-const jsdom = require('jsdom');
-const { JSDOM } = jsdom;
-const $ = require('jquery')(new JSDOM().window);
+const axios = require('axios');
 
 // Define a route for the home page
 app.get('/', (req, res) => {
@@ -14,25 +12,23 @@ app.get('/api/login', (req, res) => {
     const email = req.query.email;
     const password = req.query.password;
   
-    // Use jQuery to send an AJAX request to the login endpoint
-    $.ajax({
-      url: 'verifyLogin.php',
-      method: 'POST',
-      data: { email: email, password: password },
-      success: function(data) {
-        // Handle successful login response
-        if(data == "Valid"){
-          res.send(data);
-        }
-        else{
-          res.status(401).send('Login failed');
-        }
-      },
-      error: function(jqXHR, textStatus, errorThrown) {
-        // Handle php page error
-        res.status(401).send('Login failed');
-      }
-    });
+    axios
+  .post('http://localhost/verifyLogin.php', {
+    email: email,
+    password: password,
+  })
+  .then(function (response) {
+    // Handle successful login response
+    if (response.data == 'Valid') {
+      res.send(response.data);
+    } else {
+      res.status(401).send('Login failed');
+    }
+  })
+  .catch(function (error) {
+    // Handle PHP page error
+    res.status(401).send(error);
+  });
   });
 
 // Define a route for creating a new user
