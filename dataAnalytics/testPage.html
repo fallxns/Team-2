@@ -10,6 +10,27 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $.ajax({
+                type: 'GET',
+                url: 'api.php?api=get_data',
+                success: function(response) {
+                    var data = JSON.parse(response);
+                    // create a new paragraph element
+                    var paragraph = document.createElement('p');
+                    // set the text content of the paragraph element to the data you want to display
+                    paragraph.textContent = data[0].TeamName + " " + data[0].TaskComp; // replace with the column names from your database table
+                    // append the paragraph element to the web page
+                    document.body.appendChild(paragraph);
+                },
+                error: function(xhr, status, error) {
+                    console.log(xhr.responseText);
+                }
+            });
+        });
+    </script>
 </head>
 <body>
 	<header>
@@ -24,10 +45,7 @@
 						<a class="nav-link" href="#">Dashboard</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="#">Reports</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="#">Settings</a>
+						<a class="nav-link" href="#">Chat</a>
 					</li>
 				</ul>
 			</div>
@@ -40,30 +58,30 @@
 			<div class="col-md-4">
 				<div class="card">
 					<div class="card-header">
-						<h4>Team A Sales</h4>
+						<h4>Projects Completed / Year</h4>
 					</div>
 					<div class="card-body">
-						<canvas id="teamASalesChart"></canvas>
+						<canvas id="YearlyChart" style="height: 300px"></canvas>
 					</div>
 				</div>
 			</div>
 			<div class="col-md-4">
 				<div class="card">
 					<div class="card-header">
-						<h4>Team B Sales</h4>
+						<h4>Tasks Completed / Month</h4>
 					</div>
 					<div class="card-body">
-						<canvas id="teamBSalesChart"></canvas>
+						<canvas id="MonthlyChart" style="height: 300px"></canvas>
 					</div>
 				</div>
 			</div>
 			<div class="col-md-4">
 				<div class="card">
 					<div class="card-header">
-						<h4>Team C Sales</h4>
+						<h4>Tasks Completed / Week</h4>
 					</div>
 					<div class="card-body">
-						<canvas id="teamCSalesChart"></canvas>
+						<canvas id="WeeklyChart" style="height: 300px"></canvas>
 					</div>
 				</div>
 			</div>
@@ -72,10 +90,10 @@
     
 	<script>
 		// Dummy data for Team A sales
-		var teamASalesData = {
-			labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+		var YearlyChartData = {
+			labels: ['2017', '2018', '2019', '2020', '2021', '2022'],
 			datasets: [{
-				label: 'Sales',
+				label: 'Projects Completed',
 				data: [12000, 15000, 18000, 20000, 22000, 24000],
 				backgroundColor: 'rgba(54, 162, 235, 0.2)',
 				borderColor: 'rgba(54, 162, 235, 1)',
@@ -84,10 +102,10 @@
 		};
 
 		// Dummy data for Team B sales
-		var teamBSalesData = {
+		var MonthlyChartData = {
 			labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
 			datasets: [{
-				label: 'Sales',
+				label: 'Tasks Completed',
 				data: [8000, 10000, 12000, 15000, 17000, 19000],
 				backgroundColor: 'rgba(255, 206, 86, 0.2)',
 				borderColor: 'rgba(255, 206, 86, 1)',
@@ -96,20 +114,20 @@
 		};
 
 		// Dummy data for Team C sales
-		var teamCSalesData = {
-			labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+		var WeeklyChartData = {
+			labels: ['01/1', '07/1', '14/1', '21/1', '27/1', '04/1'],
 			datasets: [{
-				label: 'Sales',
+				label: 'Tasks Completed',
 				data: [5000, 8000, 10000, 12000, 14000, 16000],
 				backgroundColor: 'rgba(255, 99, 132, 0.2)',
 				borderColor: 'rgba(255, 99, 132, 1)',
                 borderWidth: 1
             }]
         };
-	// Create a new chart instance for Team A sales
-	var teamASalesChart = new Chart(document.getElementById('teamASalesChart'), {
+	// New chart instance for Team A sales
+	var YearlyChart = new Chart(document.getElementById('YearlyChart'), {
 		type: 'line',
-		data: teamASalesData,
+		data: YearlyChartData,
 		options: {
 			responsive: true,
 			maintainAspectRatio: false,
@@ -127,10 +145,10 @@
 		}
 	});
 
-	// Create a new chart instance for Team B sales
-	var teamBSalesChart = new Chart(document.getElementById('teamBSalesChart'), {
+	// New chart instance for Team B sales
+	var MonthlyChart = new Chart(document.getElementById('MonthlyChart'), {
 		type: 'line',
-		data: teamBSalesData,
+		data: MonthlyChartData,
 		options: {
 			responsive: true,
 			maintainAspectRatio: false,
@@ -148,10 +166,10 @@
 		}
 	});
 
-	// Create a new chart instance for Team C sales
-	var teamCSalesChart = new Chart(document.getElementById('teamCSalesChart'), {
-		type: 'line',
-		data: teamCSalesData,
+	// New chart instance for Team C sales
+	var WeeklyChart = new Chart(document.getElementById('WeeklyChart'), {
+		type: 'bar',
+		data: WeeklyChartData,
 		options: {
 			responsive: true,
 			maintainAspectRatio: false,
