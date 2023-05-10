@@ -1,6 +1,6 @@
 import { Flex, Card, Divider, CardBody } from '@chakra-ui/react';
 
-import WorkloadSlider from '../workloadSlider';
+import WorkloadSlider from './workloadSlider';
 
 function WorkloadComponent() {
   return (
