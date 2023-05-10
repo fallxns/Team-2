@@ -1,8 +1,4 @@
 import './App.css';
-import { useState } from 'react';
-import io from 'socket.io-client';
-import Chat from './components/Chat.js';
-const socket = io.connect('http://localhost:3001');
 
 function App() {
   const [username, setUsername] = useState('');
@@ -18,31 +14,20 @@ function App() {
 
   return (
     <div className="App">
-      {joined === false ? (
-        <div>
-          <h3>Message app</h3>
-          <input
-            type="text"
-            placeholder="Username:"
-            onChange={(event) => {
-              setUsername(event.target.value);
-            }}
-          />
-
-          <input
-            type="text"
-            placeholder="Group name"
-            onChange={(event) => {
-              setGroup(event.target.value);
-            }}
-          />
-          <button onClick={joinGroup}> Join Group </button>
-        </div>
-      ) : (
-        <div>
-          <Chat socket={socket} username={username} groupchat={group} />
-        </div>
-      )}
+      <header className="App-header">
+        <img src={logo} className="App-logo" alt="logo" />
+        <p>
+          Edit <code>src/App.js</code> and save to reload.
+        </p>
+        <a
+          className="App-link"
+          href="https://reactjs.org"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Learn React
+        </a>
+      </header>
     </div>
   );
 }
