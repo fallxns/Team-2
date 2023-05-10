@@ -12,7 +12,6 @@ import {
 
 import ProfileCardComponent from './profileCardComponent';
 import WorkloadComponent from './workloadComponent';
-import MessagingDash from '../messagingDash';
 
 function MessageDashTab() {
   return (
