@@ -12,6 +12,7 @@ import {
 
 import ProfileCardComponent from './profileCardComponent';
 import WorkloadComponent from './workloadComponent';
+import MessagingDashboard from '../messagingDashboard';
 
 function MessageDashTab() {
   return (
@@ -43,8 +44,7 @@ function MessageDashTab() {
         <TabPanels>
           {/* Messaging Tab (Charlie) */}
           <TabPanel>
-            <p>The messaging features will be here!!</p>
-            {/* <MessageDashTab></MessageDashTab> */}
+            <MessagingDashboard></MessagingDashboard>
           </TabPanel>
 
           {/* Dashboard Tab (Luke) */}
