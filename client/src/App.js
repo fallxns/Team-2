@@ -24,9 +24,6 @@ function App() {
   return (
     <ChakraProvider className="mainApp">
       <div>
-        {/* charlies messaging to include later */}
-        {/* <MessagingDash></MessagingDash> */}
-
         <Flex
           paddingTop={'10px'}
           fontSize={'xx-large'}

@@ -7,19 +7,18 @@ import {
   Tab,
   Grid,
   GridItem,
-  Card,
 } from '@chakra-ui/react';
 
 import ProfileCardComponent from './profileCardComponent';
 import WorkloadComponent from './workloadComponent';
 import MessagingDashboard from '../messagingDashboard';
+import Graph1Component from './graph1Component';
+import Graph2Component from './graph2Component';
 
 function MessageDashTab() {
   return (
     <Flex
       width={'100%'}
-      height={'100%'}
-      margin={'10px'}
       padding={'10px'}
       marginRight="5%"
       marginLeft="5%"
@@ -57,16 +56,25 @@ function MessageDashTab() {
                 gap={4}
                 width="100%"
               >
-                <GridItem colSpan={3} bg="yellow.100">
+                {/* Profile Card */}
+                <GridItem colSpan={3}>
                   <ProfileCardComponent></ProfileCardComponent>
                 </GridItem>
-                <GridItem colSpan={5} bg="papayawhip">
-                  <Card>
-                    <WorkloadComponent></WorkloadComponent>
-                  </Card>
+
+                {/* Workload slider card */}
+                <GridItem colSpan={5}>
+                  <WorkloadComponent></WorkloadComponent>
                 </GridItem>
-                <GridItem colSpan={4} bg="purple.100" />
-                <GridItem colSpan={4} bg="red.100" />
+
+                {/* Graph 1 */}
+                <GridItem colSpan={4} minHeight="250px">
+                  <Graph1Component></Graph1Component>
+                </GridItem>
+
+                {/* Graph 2 */}
+                <GridItem colSpan={4} minHeight="250px">
+                  <Graph2Component></Graph2Component>
+                </GridItem>
               </Grid>
             </Flex>
           </TabPanel>

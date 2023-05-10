@@ -21,7 +21,12 @@ function WorkloadSlider() {
   };
 
   return (
-    <Flex w="95%" justifyContent="center" alignItems={'center'}>
+    <Flex
+      w="95%"
+      justifyContent="center"
+      alignItems={'center'}
+      paddingTop="10px"
+    >
       <Flex w="95%" minHeight={'80px'}>
         <Slider
           h="35%"
