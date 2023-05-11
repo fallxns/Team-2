@@ -8,46 +8,46 @@
         
         <!-- Validate email function -->
         <script>
-            function validateEmails() {
-                // Declare a variable to check if email is found or not
-                let found = false;
-                
-                // Get email and password values
-                let email = document.getElementById("email").value;
-                let password = document.getElementById("password").value;
-                
-                // Fetch API endpoint for login with email and password
-                fetch(`http://localhost:3000/api/login?email=${email}&password=${password}`)
-                    .then(response => {
-                        // If response is OK, set found variable to true
-                        if (response.ok) {
+            async function validateEmails(event) {
+                try {
+                    event.preventDefault(); // Prevent form submission
+                    
+                    // Get email and password values
+                    let email = document.getElementById("email").value;
+                    let password = document.getElementById("password").value;
+                    
+                    // Fetch API endpoint for login with email and password
+                    const response = await fetch(`http://localhost:3000/api/login`);
+                    const data = await response.json(); // Parse the response as JSON
+                    
+                    // Update the HTML element with the API response
+                    let employeeData = data;
+                    let found = false;
+                    
+                    for (let employee in employeeData) {
+                        if (employeeData[employee]["email"] == email && employeeData[employee]["password"] == password) {
                             found = true;
-                        } 
-                        // Else set found variable to false
-                        else {
-                            found = false;
+                            break;
                         }
-                    })
-                    .catch(error => {
-                        console.error('Error:', error);
-                    });
-                
-                // If found variable is true, return true
-                if(found == true){
-                    return true;
+                    }
+                    
+                    console.log(found);
+                    // If found variable is true, submit the form
+                    if (found === true) {
+                        document.getElementById("login").submit(); // Submit the form
+                    } else {
+                        alert("Invalid Details");
+                    }
+                } catch (error) {
+                    console.error('Error:', error);
                 }
-                // Else show an alert and return false
-                else{
-                    alert("Invalid Details");
-                    return false;
-                }  
             }
         </script>
     </head>
 
     <body>
         <!-- Login form -->
-        <form action = "homepage.html" method = "post" onsubmit = "return validateEmails()" id = "login">
+        <form action="homepage.html" method="post" onsubmit="validateEmails(event)" id="login">
             <!-- Email input field -->
             <label class="form-label" for="email">Email Address</label>
             <input class="form-control" type="email" id="email" required>
@@ -57,7 +57,7 @@
             <input class="form-control" type="password" id="password" required>
 
             <!-- Hidden input field to store user information -->
-            <input type = "hidden" id = "userInfo" name = "userInfo" value = "">
+            <input type="hidden" id="userInfo" name="userInfo" value="">
 
             <!-- Sign in button -->
             <input type="submit" value="SIGN IN">

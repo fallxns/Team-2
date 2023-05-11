@@ -1,6 +1,9 @@
 const express = require('express');
 const app = express();
 const axios = require('axios');
+const cors = require('cors');
+
+app.use(cors());
 
 // Define a route for the home page
 app.get('/', (req, res) => {
@@ -9,46 +12,21 @@ app.get('/', (req, res) => {
 
 // Define a route for retrieving a list of users
 app.get('/api/login', (req, res) => {
-    const email = req.query.email;
-    const password = req.query.password;
-    
-    /*axios.post('http://35.246.68.10/team2/verifyLogin.php', {
-      email: 'madhu@make-it-all.co.uk',
-      password: 'Madhu1234'
-    })
+  
+    axios
+    .post('http://35.246.68.10/team2/verifyLogin.php', {})
     .then(function (response) {
-      // Handle successful login response
-      if (response.data == 'Valid') {
+      // Handle successful response
+      if (response.data != '') {
         res.send(response.data);
       } else {
-        //res.status(401).send('Login failed');
-        res.send(response.data);
-      } 
+        res.status(401).send('Unable to get login data');
+      }
     })
     .catch(function (error) {
       // Handle PHP page error
       res.status(401).send(error);
     });
-  });*/
-
-    const data = {
-      email: email,
-      password: password
-    };
-  
-    axios.post('http://35.246.68.10/team2/verifyLogin.php', data)
-      .then(function (response) {
-        // Handle successful login response
-        if (response.data == 'Valid') {
-          res.send(response.data);
-        } else {
-          res.status(401).send('Login failed');
-        } 
-      })
-      .catch(function (error) {
-        // Handle any errors
-        res.status(500).send('Internal Server Error');
-      });
   });
 
 // Start the server

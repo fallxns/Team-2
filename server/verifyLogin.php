@@ -4,10 +4,6 @@ header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Methods: GET, POST");
 header("Access-Control-Allow-Headers: Content-Type");
 
-//login credentials
-$lg_email = $_POST["email"]; 
-$lg_password = $_POST["password"];
-
 //db credentials
 $servername = "localhost";
 $username = "team2";
@@ -25,28 +21,24 @@ if ($conn->connect_error) {
 $sql = "SELECT * FROM accounts";
 
 $result = $conn->query($sql);
-$found = false;
+$userArray = [];
+$userIDs = [];
 
 //turns sql result into array
 if ($result->num_rows > 0) {
     // output data of each row
     while ($row = $result->fetch_assoc()) {
 
-        if ($row["email"] == $lg_email & $row["password"] == $lg_password) {
-            $found = true;
+        if (!in_array($row["id"], $userIDs)) {
+            array_push($userArray, $row);
+            array_push($userIDs, $row["id"]);
         }
     }
 }
 
 $conn->close();
 
-//send validation results
-if($found == true){
-    echo "Valid";
-}
-
-else{
-    echo $email;
-}
+//encodes array as json to use later
+echo json_encode($userArray);
 
 ?>
