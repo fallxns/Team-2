@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import {
   Flex,
   Tabs,
@@ -7,15 +8,21 @@ import {
   Tab,
   Grid,
   GridItem,
+  Switch,
+  Card,
 } from '@chakra-ui/react';
 
-import ProfileCardComponent from './profileCardComponent';
-import WorkloadComponent from './workloadComponent';
 import MessagingDashboard from '../messagingDashboard';
-import Graph1Component from './graph1Component';
-import Graph2Component from './graph2Component';
+import IndividualDashboard from './individualDashboard';
+import TeamDashboard from './teamDashboard';
 
 function MessageDashTab() {
+  const [toggle, setToggle] = useState(false);
+
+  const handleToggle = () => {
+    setToggle(!toggle);
+  };
+
   return (
     <Flex
       width={'100%'}
@@ -48,34 +55,32 @@ function MessageDashTab() {
 
           {/* Dashboard Tab (Luke) */}
           <TabPanel>
-            <Flex width="100%">
-              <Grid
-                h="400px"
-                templateRows="repeat(2, 1fr)"
-                templateColumns="repeat(8, 1fr)"
-                gap={4}
-                width="100%"
+            <Flex>
+              <Flex
+                // bgColor={'red.100'}
+                width="50%"
+                fontSize={'x-large'}
+                fontWeight={'bold'}
+                marginBottom="10px"
               >
-                {/* Profile Card */}
-                <GridItem colSpan={3}>
-                  <ProfileCardComponent></ProfileCardComponent>
-                </GridItem>
+                {toggle ? 'Team Dashboard' : 'My Dashboard'}
+              </Flex>
+              <Flex
+                justifyContent={'right'}
+                alignItems={'Center'}
+                width="50%"
 
-                {/* Workload slider card */}
-                <GridItem colSpan={5}>
-                  <WorkloadComponent></WorkloadComponent>
-                </GridItem>
-
-                {/* Graph 1 */}
-                <GridItem colSpan={4} minHeight="250px">
-                  <Graph1Component></Graph1Component>
-                </GridItem>
-
-                {/* Graph 2 */}
-                <GridItem colSpan={4} minHeight="250px">
-                  <Graph2Component></Graph2Component>
-                </GridItem>
-              </Grid>
+                // bgColor={'blue.100'}
+              >
+                <Switch isChecked={toggle} onChange={handleToggle} size="lg" />
+              </Flex>
+            </Flex>
+            <Flex width="100%">
+              {toggle ? (
+                <TeamDashboard></TeamDashboard>
+              ) : (
+                <IndividualDashboard></IndividualDashboard>
+              )}
             </Flex>
           </TabPanel>
         </TabPanels>

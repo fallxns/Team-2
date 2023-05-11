@@ -17,8 +17,8 @@ function ProfileCardComponent() {
   const userPhoneNum = '+44 7462 973 355';
 
   return (
-    <Flex h="100%">
-      <Card width="100%" shadow={'xl'} variant={'outline'} h="100%">
+    <Flex height="100%">
+      <Card width="100%" shadow={'xl'} variant={'outline'}>
         <CardBody>
           <Flex spacing="4">
             <Flex flex="1" gap="4" alignItems="center" flexWrap="wrap">
@@ -33,7 +33,7 @@ function ProfileCardComponent() {
               Edit
             </Button>
           </Flex>
-          <DividerProp></DividerProp>
+          <DividerProp />
           <Flex fontWeight={'bold'} fontSize={'large'}>
             Contact Details
           </Flex>

@@ -3,9 +3,9 @@ import DividerProp from './dividerProp';
 
 function Graph2Component() {
   return (
-    <Flex w="100%" h="100%" paddingBottom="30px">
+    <Flex w="100%" h="100%">
       <Card width="100%" shadow={'xl'} variant={'outline'} h="100%">
-        <CardBody h="100%" w="100%">
+        <CardBody h="400px">
           <Flex fontWeight={'bold'} fontSize="large">
             Graph 2
           </Flex>
@@ -13,9 +13,8 @@ function Graph2Component() {
           <Flex
             justifyContent={'center'}
             alignItems={'center'}
-            height="85%"
             width="100%"
-            overflow="hidden"
+            height="80%"
           >
             [insert graph 2 here]
           </Flex>
