@@ -1,18 +1,18 @@
 import { Card, CardBody, Flex } from '@chakra-ui/react';
 import DividerProp from './dividerProp';
 
-function TeamWeeklyGraph() {
+function TeamMonthGraph() {
   return (
     <Flex width="100%" height="100%">
-      <Card w="100%" boxShadow={'md'}>
+      <Card w="100%" shadow={'md'} variant={'outline'}>
         <CardBody>
           <Flex flexDirection={'column'}>
             <Flex fontWeight={'bold'} fontSize="large">
-              This Weeks Workload
+              This Months Workload
             </Flex>
             <DividerProp></DividerProp>
             <Flex justifyContent={'center'} alignItems={'center'}>
-              [insert weekly workload graph here]
+              [insert monthly workload graph here]
             </Flex>
           </Flex>
         </CardBody>
@@ -21,4 +21,4 @@ function TeamWeeklyGraph() {
   );
 }
 
-export default TeamWeeklyGraph;
+export default TeamMonthGraph;

@@ -1,26 +1,22 @@
 import { Flex, GridItem, Grid } from '@chakra-ui/react';
 import TeamWeeklyGraph from './teamWeeklyGraph';
-import ProfileCardComponent from './profileCardComponent';
-import Graph1Component from './graph1Component';
-import Graph2Component from './graph2Component';
-import WorkloadComponent from './workloadComponent';
+
+import TeamMonthGraph from './teamMonthGraph';
+import TeamMembersComponent from './teamMembersComponent';
 
 function TeamDashboard() {
   return (
     <Grid
-      bgColor={'green.100'}
       templateRows="repeat(2, 1fr)"
       templateColumns="repeat(8, 1fr)"
-      gap={4}
+      columnGap={'2%'}
+      rowGap={'2%'}
       width="100%"
     >
       {/* Profile Card */}
-      <GridItem colSpan={3}>
-        <ProfileCardComponent></ProfileCardComponent>
-      </GridItem>
 
-      <GridItem colSpan={5}>
-        <WorkloadComponent></WorkloadComponent>
+      <GridItem colSpan={8}>
+        <TeamMembersComponent firstName="Luke"></TeamMembersComponent>
       </GridItem>
 
       {/* Graph 1 */}
@@ -30,7 +26,7 @@ function TeamDashboard() {
 
       {/* Graph 2 */}
       <GridItem colSpan={4}>
-        <Graph2Component></Graph2Component>
+        <TeamMonthGraph></TeamMonthGraph>
       </GridItem>
     </Grid>
   );

@@ -9,7 +9,7 @@ function WorkloadComponent() {
       <Card
         width="100%"
         height="100%"
-        shadow={'xl'}
+        shadow={'md'}
         variant={'outline'}
         marginBottom="0px"
       >

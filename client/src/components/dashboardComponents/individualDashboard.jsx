@@ -7,7 +7,6 @@ import Graph2Component from './graph2Component';
 function IndividualDashboard() {
   return (
     <Grid
-      bgColor={'green.100'}
       templateRows="repeat(2, 1fr)"
       templateColumns="repeat(8, 1fr)"
       gap={4}

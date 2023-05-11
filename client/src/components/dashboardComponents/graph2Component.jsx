@@ -4,7 +4,7 @@ import DividerProp from './dividerProp';
 function Graph2Component() {
   return (
     <Flex w="100%" h="100%">
-      <Card width="100%" shadow={'xl'} variant={'outline'} h="100%">
+      <Card width="100%" shadow={'md'} variant={'outline'} h="100%">
         <CardBody h="400px">
           <Flex fontWeight={'bold'} fontSize="large">
             Graph 2

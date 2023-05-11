@@ -18,11 +18,11 @@ function ProfileCardComponent() {
 
   return (
     <Flex height="100%">
-      <Card width="100%" shadow={'xl'} variant={'outline'}>
+      <Card width="100%" shadow={'md'} variant={'outline'}>
         <CardBody>
           <Flex spacing="4">
             <Flex flex="1" gap="4" alignItems="center" flexWrap="wrap">
-              <Avatar name={name} src="images/P2030862.jpg" />
+              <Avatar name={name} />
 
               <Box>
                 <Heading size="md">{name}</Heading>
