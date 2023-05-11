@@ -1,35 +1,26 @@
 import './App.css';
 import * as React from 'react';
-import { Center, ChakraProvider } from '@chakra-ui/react';
-import { Tabs, TabList, TabPanels, Tab, TabPanel } from '@chakra-ui/react';
-import { Grid, GridItem } from '@chakra-ui/react';
-import { BeakerIcon } from '@heroicons/react/24/solid';
-import { AddIcon } from '@chakra-ui/icons';
-import {
-  Avatar,
-  AvatarBadge,
-  AvatarGroup,
-  IconButton,
-  WrapItem,
-  Flex,
-  Spacer,
-  Input,
-  Button,
-  ButtonGroup,
-} from '@chakra-ui/react';
-import {
-  Card,
-  CardHeader,
-  CardBody,
-  CardFooter,
-  Heading,
-  Stack,
-  StackDivider,
-  Box,
-  Text,
-} from '@chakra-ui/react';
+import io from 'socket.io-client';
+import { useState } from 'react';
+import { ChakraProvider } from '@chakra-ui/react';
+import { Flex } from '@chakra-ui/react';
+
+import MessageDashTab from './components/dashboardComponents/messageDashTab';
 
 function App() {
+  const [username, setUsername] = useState('');
+  const [group, setGroup] = useState('');
+  const [joined, setJoined] = useState(false);
+
+  const socket = io();
+
+  const joinGroup = () => {
+    if (username !== '' && group !== '') {
+      setJoined(true);
+      socket.emit('join_group', group);
+    }
+  };
+
   return (
     <ChakraProvider className="mainApp">
       <Grid
@@ -158,89 +149,6 @@ function App() {
                     <GridItem colSpan={4}></GridItem>
                   </Grid>
                 </Box>
-                <GridItem rowSpan={2} colSpan={1}>
-                  <Center>
-                    <Heading
-                      size="sm"
-                      textTransform="uppercase"
-                      alignItems="right"
-                      mb="8px"
-                    >
-                      team groupchat
-                    </Heading>
-
-                    {/* make a flex box so that it can display how many messages as well as members in the group. */}
-                  </Center>
-                  <Center>
-                    <WrapItem gap="4px">
-                      <Avatar
-                        name="Angus Todd"
-                        src=""
-                        mb="12px"
-                        height="60px"
-                        width="60px"
-                        skewX="10px"
-                      />
-                      <Avatar
-                        name="Luke Sweeney"
-                        src=""
-                        mb="12px"
-                        height="52px"
-                        width="52px"
-                      />
-                      <Avatar
-                        name="Michae Jordan"
-                        src=""
-                        mb="12px"
-                        height="48px"
-                        width="48px"
-                      />
-                      <Avatar
-                        name="Ben J"
-                        src=""
-                        mb="12px"
-                        height="62px"
-                        width="62px"
-                      />
-                      <Avatar
-                        name="J Man"
-                        src=""
-                        mb="12px"
-                        height="48px"
-                        width="48px"
-                      />
-                      <Avatar
-                        name="Yo Yo"
-                        src=""
-                        mb="12px"
-                        height="58px"
-                        width="58px"
-                      />
-                      <Avatar
-                        name="Dan Abrahmov"
-                        src=""
-                        mb="12px"
-                        height="62px"
-                        width="62px"
-                      />
-                    </WrapItem>
-                  </Center>
-                  <Flex minWidth="max-content" alignItems="center" gap="2">
-                    <Text pt="0" fontSize="sm" fontWeight="400">
-                      Preview of the text message goes here.
-                    </Text>
-                    <Spacer />
-                    <Text
-                      gap="2"
-                      fontSize="xs"
-                      textTransform="uppercase"
-                      fontWeight="400"
-                      pr="10px"
-                    >
-                      3 min ago
-                    </Text>
-                  </Flex>
-                </GridItem>
                 <Box>
                   <Grid
                     h="20px"
@@ -312,30 +220,10 @@ function App() {
           className="footer"
           borderTopWidth="75vh"
         >
-          <Flex
-            minWidth="max-content"
-            alignItems="center"
-            gap="2"
-            className="footer"
-          >
-            <Box p="2" w="100%">
-              <Input
-                variant="outline"
-                placeholder="Say something..."
-                w="100%"
-                borderRadius="0px"
-                bg="#edf0f4"
-                color="black"
-              />
-            </Box>
-            <ButtonGroup gap="2">
-              <Button bg="#0147FF" color="white" borderRadius="0px">
-                Send
-              </Button>
-            </ButtonGroup>
-          </Flex>
-        </GridItem>
-      </Grid>
+          Make-It-All
+        </Flex>
+        <Flex> {MessageDashTab()} </Flex>
+      </div>
     </ChakraProvider>
   );
 }
