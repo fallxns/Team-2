@@ -1,10 +1,15 @@
 <?php
+//allow cross-origin requests
+header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Methods: GET, POST");
+header("Access-Control-Allow-Headers: Content-Type");
+
 //login credentials
-$lg_email = $_REQUEST["email"]; 
-$lg_password = $_REQUEST["password"];
+$lg_email = $_POST["email"]; 
+$lg_password = $_POST["password"];
 
 //db credentials
-$servername = "35.246.43.223";
+$servername = "localhost";
 $username = "team2";
 $password = "Team02##";
 $database = "team2";
@@ -41,5 +46,7 @@ if($found == true){
 }
 
 else{
-    echo "Invalid";
+    echo $email;
 }
+
+?>
