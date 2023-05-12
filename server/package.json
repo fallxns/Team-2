@@ -5,8 +5,8 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon server.js",
-    "start:server": "nodemon server.js"
+    "start": "nodemon loginApi.js",
+    "start:server": "nodemon loginApi.js"
   },
   "author": "",
   "license": "ISC",
@@ -14,6 +14,8 @@
     "axios": "^1.3.4",
     "cors": "^2.8.5",
     "express": "^4.18.2",
+    "jquery": "^3.6.4",
+    "jsdom": "^21.1.1",
     "nodemon": "^2.0.21",
     "socket.io": "^4.6.1"
   }
