@@ -1,15 +1,27 @@
+import React, { useState } from 'react';
 import './App.css';
-import { useState } from 'react';
+import axios from 'axios';
 import Chat from './components/Chat';
+import Groups from './components/Groups';
 
 function App() {
   const [username, setUsername] = useState('');
   const [group, setGroup] = useState('');
   const [joined, setJoined] = useState(false);
 
-  const joinGroup = () => {
-    if (username !== '' && group !== '') {
+  const joinGroup = (groupName) => {
+    if (username !== '') {
+      setGroup(groupName);
       setJoined(true);
+    }
+  };
+
+  const createGroup = async (groupName) => {
+    try {
+      await axios.post('http://localhost:3001/groups', { name: groupName });
+      alert('Group created successfully');
+    } catch (error) {
+      console.error('Error creating group:', error);
     }
   };
 
@@ -25,15 +37,7 @@ function App() {
               setUsername(event.target.value);
             }}
           />
-
-          <input
-            type="text"
-            placeholder="Group name"
-            onChange={(event) => {
-              setGroup(event.target.value);
-            }}
-          />
-          <button onClick={joinGroup}>Join Group</button>
+          <Groups onGroupSelect={joinGroup} onGroupCreate={createGroup} />
         </div>
       ) : (
         <div className="chat-container">
