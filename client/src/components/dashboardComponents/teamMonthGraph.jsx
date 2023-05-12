@@ -1,19 +1,49 @@
 import { Card, CardBody, Flex } from '@chakra-ui/react';
 import DividerProp from './dividerProp';
+import { Bar } from 'react-chartjs-2';
 
 function TeamMonthGraph() {
+  const data = {
+    labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+    datasets: [
+      {
+        label: 'Tasks Completed',
+        data: [6, 6, 7, 5, 5], // Replace with your actual data
+        backgroundColor: 'rgba(75, 192, 192, 0.6)',
+        borderColor: 'rgba(75, 192, 192, 1)',
+      },
+      {
+        label: 'Tasks Uncompleted',
+        data: [2, 5, 3, 8, 4], // Additional data for staggered bars
+        backgroundColor: 'rgba(192, 75, 75, 0.6)',
+        borderColor: 'rgba(192, 75, 75, 1)',
+      },
+    ],
+  };
+
+  // Chart options
+  const options = {
+    indexAxis: 'x', // Rotate bars to be vertical
+    scales: {
+      x: {
+        beginAtZero: true,
+      },
+      y: {
+        beginAtZero: true,
+      },
+    },
+  };
+
   return (
-    <Flex width="100%" height="100%">
-      <Card w="100%" shadow={'md'} variant={'outline'}>
-        <CardBody>
-          <Flex flexDirection={'column'}>
-            <Flex fontWeight={'bold'} fontSize="large">
-              This Months Workload
-            </Flex>
-            <DividerProp></DividerProp>
-            <Flex justifyContent={'center'} alignItems={'center'}>
-              [insert monthly workload graph here]
-            </Flex>
+    <Flex w="100%" h="100%">
+      <Card width="100%" shadow={'md'} variant={'outline'} h="100%">
+        <CardBody h="100%" w="100%">
+          <Flex fontWeight={'bold'} fontSize="large">
+            Team A's Task Completion (Monthly):
+          </Flex>
+          <DividerProp />
+          <Flex justifyContent={'center'} alignItems={'center'} height="80%" width="100%">
+            <Bar data={data} options={options} />
           </Flex>
         </CardBody>
       </Card>
