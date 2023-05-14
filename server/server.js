@@ -129,7 +129,7 @@ app.get('/api/login', (req, res) => {
     });
 });
 
-//team weekly
+// Define a route for retrieving a list of teamAweekly graph points
 app.get('/api/teamAweekly', (req, res) => {
   axios
     .post('http://34.105.142.231/team2/getTeamAWeekly.php', {})
@@ -147,7 +147,7 @@ app.get('/api/teamAweekly', (req, res) => {
     });
 });
 
-//team Monthly
+// Define a route for retrieving a list of team2monthly graph points
 app.get('/api/teamAmonthly', (req, res) => {
   axios
     .post('http://34.105.142.231/team2/getTeamAMonthly.php', {})
