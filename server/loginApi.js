@@ -14,7 +14,7 @@ app.get('/', (req, res) => {
 app.get('/api/login', (req, res) => {
   
     axios
-    .post('http://35.246.68.10/team2/verifyLogin.php', {})
+    .post('http://34.105.142.231/team2/verifyLogin.php', {})
     .then(function (response) {
       // Handle successful response
       if (response.data != '') {
