@@ -3,8 +3,42 @@ import { Card, CardBody, Flex } from '@chakra-ui/react';
 import { Line } from 'react-chartjs-2';
 import WorkloadSlider from './workloadSlider';
 
+async function getWorkloadGraph() {
+  try {
+    // Fetch API endpoint for workloadgraph points
+    const response = await fetch(`http://localhost:3001/api/workloadgraph`);
+    const data = await response.json(); // Parse the response as JSON
+
+    // Get the API response
+    let graphData = data;
+    let dates = [];
+    let values = [];
+
+    for (let point in graphData) {
+      dates.push(graphData[point]["Date"]);
+      values.push(graphData[point]["Workload"]);
+    }
+
+    let finalData = [dates, values];
+
+    // Return points
+    return finalData;
+  } catch (error) {
+    console.error('Error:', error);
+  }
+}
+
 const Graph2Component = () => {
   const [sliderValue, setSliderValue] = useState(5);
+  const [graphData, setGraphData] = useState([[], []]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await getWorkloadGraph();
+      setGraphData(data);
+    };
+    fetchData();
+  }, []);
 
   const handleSliderChange = (val) => {
     setSliderValue(val);
@@ -15,12 +49,20 @@ const Graph2Component = () => {
     console.log('Received Variable:', sliderValue);
   }, [sliderValue]);
 
+  useEffect(() => {
+    if (graphData.length > 0) {
+      const updatedData = [...graphData];
+      updatedData[1][updatedData[1].length - 1] = sliderValue;
+      setGraphData(updatedData);
+    }
+  }, [sliderValue]);
+
   const data = {
-    labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+    labels: graphData[0],
     datasets: [
       {
         label: 'Workload',
-        data: [8, 6, 7, 9, sliderValue],
+        data: graphData[1],
         backgroundColor: 'rgba(75, 192, 192, 0.6)',
         borderColor: 'rgba(75, 192, 192, 1)',
         fill: false,

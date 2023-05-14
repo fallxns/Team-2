@@ -1,20 +1,58 @@
 import { Card, CardBody, Flex } from '@chakra-ui/react';
 import DividerProp from './dividerProp';
 import { Bar } from 'react-chartjs-2';
+import React, { useState, useEffect } from 'react';
+
+async function getTeamAMonthly() {
+  try {        
+      // Fetch API endpoint for teamAmonth points
+      const response = await fetch(`http://localhost:3001/api/teamAmonthly`);
+      const data = await response.json(); // Parse the response as JSON
+      
+      // Get the API response
+      let graphData = data;
+      let dates = [];
+      let values1 = [];
+      let values2 = [];
+      
+      for (let point in graphData) {
+          dates.push(graphData[point]["Date"]);
+          values1.push(graphData[point]["TaskComp"]);
+          values2.push(graphData[point]["TaskUnComp"]);
+      }
+
+      let finalData = [dates,values1,values2];
+      
+      // Return points
+      return finalData;
+  } catch (error) {
+      console.error('Error:', error);
+  }
+}
 
 function TeamMonthGraph() {
+  const [graphData, setGraphData] = useState([[], []]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await getTeamAMonthly();
+      setGraphData(data);
+    };
+    fetchData();
+  }, []);
+
   const data = {
-    labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+    labels: graphData[0],
     datasets: [
       {
         label: 'Tasks Completed',
-        data: [6, 6, 7, 5, 5], // Replace with your actual data
+        data: graphData[1],
         backgroundColor: 'rgba(75, 192, 192, 0.6)',
         borderColor: 'rgba(75, 192, 192, 1)',
       },
       {
         label: 'Tasks Uncompleted',
-        data: [2, 5, 3, 8, 4], // Additional data for staggered bars
+        data: graphData[2],
         backgroundColor: 'rgba(192, 75, 75, 0.6)',
         borderColor: 'rgba(192, 75, 75, 1)',
       },
