@@ -3,6 +3,7 @@ import './App.css';
 import axios from 'axios';
 import Chat from './components/Chat';
 import Groups from './components/Groups';
+import LoginComponent from './components/LoginComponent';
 
 function App() {
   const [username, setUsername] = useState('');
@@ -29,6 +30,10 @@ function App() {
     <div className="App">
       {joined === false ? (
         <div className="join-group">
+          <h1>Login</h1>
+          <div>
+            <LoginComponent />
+          </div>
           <h3>Message app</h3>
           <input
             type="text"
