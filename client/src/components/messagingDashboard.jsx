@@ -3,11 +3,6 @@ import { AddIcon } from '@chakra-ui/icons';
 import {
   Avatar,
   Center,
-  Tabs,
-  TabList,
-  TabPanels,
-  Tab,
-  TabPanel,
   IconButton,
   WrapItem,
   Flex,

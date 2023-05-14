@@ -5,23 +5,23 @@ import DividerProp from './dividerProp';
 import React from 'react';
 
 async function getLineGraph() {
-  try {        
+  try {
     // Fetch API endpoint for linegraph points
     const response = await fetch(`http://localhost:3001/api/linegraph`);
     const data = await response.json(); // Parse the response as JSON
-      
+
     // Get the API response
     let graphData = data;
     let dates = [];
     let values = [];
-      
+
     for (let point in graphData) {
-      dates.push(graphData[point]["Date"]);
-      values.push(graphData[point]["ManHrs"]);
+      dates.push(graphData[point]['Date']);
+      values.push(graphData[point]['ManHrs']);
     }
 
     let finalData = [dates, values];
-      
+
     // Return points
     return finalData;
   } catch (error) {
@@ -69,7 +69,12 @@ function Graph1Component() {
             Your Man Hours Worked This Week:
           </Flex>
           <DividerProp />
-          <Flex justifyContent="center" alignItems="center" height="80%" width="100%">
+          <Flex
+            justifyContent="center"
+            alignItems="center"
+            height="80%"
+            width="100%"
+          >
             {graphData[0].length > 0 ? (
               <Bar data={data} options={options} />
             ) : (
