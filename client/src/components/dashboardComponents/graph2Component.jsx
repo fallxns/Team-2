@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Card, CardBody, Flex } from '@chakra-ui/react';
 import { Line } from 'react-chartjs-2';
 import WorkloadSlider from './workloadSlider';
+import DividerProp from './dividerProp';
 
 async function getWorkloadGraph() {
   try {
@@ -15,8 +16,8 @@ async function getWorkloadGraph() {
     let values = [];
 
     for (let point in graphData) {
-      dates.push(graphData[point]["Date"]);
-      values.push(graphData[point]["Workload"]);
+      dates.push(graphData[point]['Date']);
+      values.push(graphData[point]['Workload']);
     }
 
     let finalData = [dates, values];
@@ -83,17 +84,34 @@ const Graph2Component = () => {
     <Flex w="100%" h="100%">
       <Card width="100%" shadow="md" variant="outline" h="100%">
         <CardBody h="100%" w="100%">
-          <Flex w="95%" justifyContent="center" alignItems="center" paddingTop="10px">
+          <Flex fontWeight="bold" fontSize="large">
+            Rank Your Workload This Week
+          </Flex>
+          <DividerProp></DividerProp>
+          <Flex
+            w="95%"
+            justifyContent="center"
+            alignItems="center"
+            paddingTop="10px"
+            flexDirection={'row'}
+          >
             <WorkloadSlider
               sliderValue={sliderValue}
               handleSliderChange={handleSliderChange}
             />
           </Flex>
-          <Flex w="100%" justifyContent="center" alignItems="center" paddingTop="30px">
+          <DividerProp></DividerProp>
+          <Flex
+            w="100%"
+            justifyContent="center"
+            alignItems="center"
+            paddingTop="30px"
+          >
             <Line data={data} options={options} />
           </Flex>
         </CardBody>
       </Card>
+      <DividerProp></DividerProp>
     </Flex>
   );
 };

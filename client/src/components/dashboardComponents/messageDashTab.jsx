@@ -63,7 +63,7 @@ function MessageDashTab() {
                 fontWeight={'bold'}
                 marginBottom="10px"
               >
-                {toggle ? 'Team Dashboard' : 'My Dashboard'}
+                {toggle ? "Team A's Dashboard" : 'My Dashboard'}
               </Flex>
               <Flex
                 justifyContent={'right'}

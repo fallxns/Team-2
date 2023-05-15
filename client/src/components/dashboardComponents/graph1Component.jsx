@@ -66,7 +66,7 @@ function Graph1Component() {
       <Card width="100%" shadow="md" variant="outline" h="100%">
         <CardBody h="100%" w="100%">
           <Flex fontWeight="bold" fontSize="large">
-            Your Man Hours Worked This Week:
+            Your Monthly Man Hours
           </Flex>
           <DividerProp />
           <Flex

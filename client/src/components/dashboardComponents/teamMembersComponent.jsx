@@ -1,22 +1,39 @@
-import { Card, CardBody, Flex } from '@chakra-ui/react';
-
+import { Flex } from '@chakra-ui/react';
 import TeamMemberIcon from './teamMemberIcon';
 
-// Team Members
-const m1 = 'Angus Todd';
-const m2 = 'Luke Sweeney';
-const m3 = 'Charlie Kilner';
-const m4 = 'Freddie Fallon';
-
 function TeamMembersComponent() {
+  const teamMembers = [
+    {
+      name: 'Angus Todd',
+      role: 'Developer',
+      email: 'angus@example.com',
+      phone: '123-456-7890',
+    },
+    {
+      name: 'Luke Sweeney',
+      role: 'Designer',
+      email: 'luke@example.com',
+      phone: '234-567-8901',
+    },
+    {
+      name: 'Charlie Kilner',
+      role: 'Project Manager',
+      email: 'charlie@example.com',
+      phone: '345-678-9012',
+    },
+    {
+      name: 'Freddie Fallon',
+      role: 'Product Owner',
+      email: 'freddie@example.com',
+      phone: '456-789-0123',
+    },
+  ];
+
   return (
-    <Flex>
-      <Flex flexDirection={'row'} gap="20px">
-        <TeamMemberIcon name={m1}></TeamMemberIcon>
-        <TeamMemberIcon name={m2}></TeamMemberIcon>
-        <TeamMemberIcon name={m3}></TeamMemberIcon>
-        <TeamMemberIcon name={m4}></TeamMemberIcon>
-      </Flex>
+    <Flex flexDirection={'row'} gap="20px">
+      {teamMembers.map((member) => (
+        <TeamMemberIcon key={member.name} member={member}></TeamMemberIcon>
+      ))}
     </Flex>
   );
 }

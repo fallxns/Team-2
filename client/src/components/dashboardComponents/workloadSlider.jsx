@@ -35,8 +35,13 @@ const WorkloadSlider = ({ sliderValue, handleSliderChange }) => {
       >
         <SliderTrack h="10px" />
         <SliderFilledTrack borderRadius="20px" />
-        <SliderThumb width="30px" height="30px" border="1px" />
-        <Box position="relative" w="100%" display="flex" justifyContent="space-between">
+        <SliderThumb width="15px" height="30px" border="1px" />
+        <Box
+          position="relative"
+          w="100%"
+          display="flex"
+          justifyContent="space-between"
+        >
           <Box className="chakra-slider__markers">
             <SliderMark value={1} {...labelStyles}>
               1
