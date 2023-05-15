@@ -16,7 +16,7 @@ import MessagingDashboard from '../messagingDashboard';
 import IndividualDashboard from './individualDashboard';
 import TeamDashboard from './teamDashboard';
 
-function MessageDashTab() {
+function MessageDashTab({ socket }) {
   const [toggle, setToggle] = useState(false);
 
   const handleToggle = () => {
@@ -50,7 +50,7 @@ function MessageDashTab() {
         <TabPanels>
           {/* Messaging Tab (Charlie) */}
           <TabPanel>
-            <MessagingDashboard></MessagingDashboard>
+            <MessagingDashboard socket={socket} />
           </TabPanel>
 
           {/* Dashboard Tab (Luke) */}

@@ -5,7 +5,7 @@ import Groups from './Groups';
 import Chat from './Chat';
 import { Grid, GridItem, Text } from '@chakra-ui/react';
 
-const MessagingDashboard = () => {
+const MessagingDashboard = ({ socket }) => {
   const [selectedGroup, setSelectedGroup] = useState(null);
   const [username, setUsername] = useState('User1'); // for simplicity, let's set username to 'User1'
 
@@ -37,7 +37,11 @@ const MessagingDashboard = () => {
           borderColor="#e6e9ed"
         >
           {selectedGroup ? (
-            <Chat groupchat={selectedGroup} username={username} />
+            <Chat
+              socket={socket}
+              groupchat={selectedGroup}
+              username={username}
+            />
           ) : (
             <h1>
               <center>

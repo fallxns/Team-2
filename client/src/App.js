@@ -1,6 +1,6 @@
 import MessageDashTab from './components/dashboardComponents/messageDashTab';
 import * as React from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Center, ChakraProvider } from '@chakra-ui/react';
 import { Tabs, TabList, TabPanels, Tab, TabPanel } from '@chakra-ui/react';
 import { Grid, GridItem } from '@chakra-ui/react';
@@ -33,7 +33,13 @@ function App() {
   const [group, setGroup] = useState('');
   const [joined, setJoined] = useState(false);
 
-  const socket = io();
+  const [socket, setSocket] = useState(null);
+
+  useEffect(() => {
+    const newSocket = io('http://34.105.142.231:3001');
+    setSocket(newSocket);
+    return () => newSocket.close();
+  }, []);
 
   const joinGroup = () => {
     if (username !== '' && group !== '') {
@@ -54,7 +60,10 @@ function App() {
         >
           Make-It-All
         </Flex>
-        <Flex> {MessageDashTab()} </Flex>
+        <Flex>
+          {' '}
+          <MessageDashTab socket={socket} />{' '}
+        </Flex>
       </div>
     </ChakraProvider>
   );

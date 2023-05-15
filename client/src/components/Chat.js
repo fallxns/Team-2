@@ -15,18 +15,9 @@ import {
 } from '@chakra-ui/react';
 import { io } from 'socket.io-client';
 
-const Chat = ({ groupchat, username }) => {
+const Chat = ({ socket, groupchat, username }) => {
   const [messages, setMessages] = useState([]);
   const [message, setMessage] = useState('');
-  const [socket, setSocket] = useState(null);
-
-  useEffect(() => {
-    // Create a socket connection to your server
-    const newSocket = io('http://34.105.142.231:3001');
-    setSocket(newSocket);
-
-    return () => newSocket.close();
-  }, []);
 
   useEffect(() => {
     if (socket && groupchat) {
