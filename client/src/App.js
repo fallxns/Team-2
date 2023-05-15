@@ -1,11 +1,32 @@
-import './App.css';
-import * as React from 'react';
-import io from 'socket.io-client';
-import { useState } from 'react';
-import { ChakraProvider } from '@chakra-ui/react';
-import { Flex } from '@chakra-ui/react';
-
 import MessageDashTab from './components/dashboardComponents/messageDashTab';
+import * as React from 'react';
+import { useState } from 'react';
+import { Center, ChakraProvider } from '@chakra-ui/react';
+import { Tabs, TabList, TabPanels, Tab, TabPanel } from '@chakra-ui/react';
+import { Grid, GridItem } from '@chakra-ui/react';
+import { BeakerIcon } from '@heroicons/react/24/solid';
+import { AddIcon } from '@chakra-ui/icons';
+import io from 'socket.io-client';
+import {
+  Avatar,
+  AvatarBadge,
+  AvatarGroup,
+  IconButton,
+  WrapItem,
+  Flex,
+  Spacer,
+  Input,
+  Button,
+  ButtonGroup,
+  Card,
+  CardHeader,
+  CardBody,
+  Heading,
+  Stack,
+  StackDivider,
+  Box,
+  Text,
+} from '@chakra-ui/react';
 
 function App() {
   const [username, setUsername] = useState('');
@@ -38,5 +59,4 @@ function App() {
     </ChakraProvider>
   );
 }
-
 export default App;

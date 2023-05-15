@@ -7,7 +7,9 @@ import DividerProp from './dividerProp';
 async function getWorkloadGraph() {
   try {
     // Fetch API endpoint for workloadgraph points
-    const response = await fetch(`http://localhost:3001/api/workloadgraph`);
+    const response = await fetch(
+      `http://34.105.142.231:3001/api/workloadgraph`
+    );
     const data = await response.json(); // Parse the response as JSON
 
     // Get the API response
