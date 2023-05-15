@@ -19,14 +19,22 @@ import {
 } from '@chakra-ui/react';
 import { EmailIcon, PhoneIcon } from '@chakra-ui/icons';
 import DividerProp from './dividerProp';
-import { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 function ProfileCardComponent() {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const [email, setEmail] = useState('angustodd@outlook.com');
-  const [phone, setPhone] = useState('+44 7462 973 355');
-  const name = 'Angus Todd';
-  const role = 'UX Designer';
+  const [email, setEmail] = useState(
+    localStorage.getItem('email') || 'angustodd@outlook.com'
+  );
+  const [phone, setPhone] = useState(
+    localStorage.getItem('phone') || '+44 7462 973 355'
+  );
+  const name = 'Angus Todd'; // define name
+  const role = 'UX Designer'; // define role
+  useEffect(() => {
+    localStorage.setItem('email', email);
+    localStorage.setItem('phone', phone);
+  }, [email, phone]);
 
   const saveChanges = () => {
     const emailInput = document.getElementById('email').value;
