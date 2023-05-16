@@ -21,6 +21,11 @@ const io = new Server(server, {
   },
 });
 
+// Start the server
+app.listen(3001, () => {
+  console.log('Server is running on port 3001');
+});
+
 const serviceAccount = require('./credentials/team-2-379813-firebase-adminsdk-z1dop-8c405292cf.json');
 
 const fbApp = firebaseAdmin.initializeApp({
