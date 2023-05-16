@@ -155,7 +155,7 @@ app.get('/api/teamAweekly', (req, res) => {
 // Define a route for retrieving a list of team2monthly graph points
 app.get('/api/teamAmonthly', (req, res) => {
   axios
-    .post('http://34.105.142.231/Team-2/getDB/getTeamAMonthly.php', {})
+    .post('https://raw.githubusercontent.com/fallxns/Team-2/main/getDB/getTeamAMonthly.php', {})
     .then(function (response) {
       // Handle successful graph response
       if (response.data != '') {
