@@ -5,7 +5,7 @@ header("Access-Control-Allow-Methods: GET, POST");
 header("Access-Control-Allow-Headers: Content-Type");
 
 //db credentials
-$servername = "localhost";
+$servername = "34.105.142.231";
 $username = "team2";
 $password = "Team02##";
 $database = "team2";
