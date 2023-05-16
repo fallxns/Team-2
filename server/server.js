@@ -82,7 +82,7 @@ const fetchMessagesFromFirestore = async (group, callback) => {
 // Define a route for retrieving a list of line graph points
 app.get('/api/linegraph', (req, res) => {
   axios
-    .post('./getDB/getLineGraph.php', {})
+    .post('https://raw.githubusercontent.com/fallxns/Team-2/main/getDB/getLineGraph.php', {})
     .then(function (response) {
       // Handle successful graph response
       if (response.data != '') {
@@ -100,7 +100,7 @@ app.get('/api/linegraph', (req, res) => {
 // Define a route for retrieving a list of workload line graph points
 app.get('/api/workloadgraph', (req, res) => {
   axios
-    .post('./getDB/getWorkloadGraph.php', {})
+    .post('https://raw.githubusercontent.com/fallxns/Team-2/main/getDB/getWorkloadGraph.php', {})
     .then(function (response) {
       // Handle successful graph response
       if (response.data != '') {
@@ -119,7 +119,7 @@ app.get('/api/workloadgraph', (req, res) => {
 // Define a route for retrieving a list of users
 app.get('/api/login', (req, res) => {
   axios
-    .post('./getDB/verifyLogin.php', {})
+    .post('https://raw.githubusercontent.com/fallxns/Team-2/main/getDB/verifyLogin.php', {})
     .then(function (response) {
       // Handle successful response
       if (response.data != '') {
@@ -137,7 +137,7 @@ app.get('/api/login', (req, res) => {
 // Define a route for retrieving a list of teamAweekly graph points
 app.get('/api/teamAweekly', (req, res) => {
   axios
-    .post('./getDB/getTeamAWeekly.php', {})
+    .post('https://raw.githubusercontent.com/fallxns/Team-2/main/getDB/getTeamAWeekly.php', {})
     .then(function (response) {
       // Handle successful graph response
       if (response.data != '') {
