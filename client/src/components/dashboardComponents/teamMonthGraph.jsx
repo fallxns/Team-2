@@ -6,7 +6,7 @@ import React, { useState, useEffect } from 'react';
 async function getTeamAMonthly() {
   try {
     // Fetch API endpoint for teamAmonth points
-    const response = await fetch(`http://35.246.6.37:3002/api/teamAmonthly`);
+    const response = await fetch(`http://34.105.142.231:3001/api/teamAmonthly`);
     const data = await response.json(); // Parse the response as JSON
 
     // Get the API response
