@@ -16,14 +16,14 @@ app.use(express.json());
 
 const io = new Server(server, {
   cors: {
-    origin: 'http://35.246.6.37:3001',
+    origin: 'http://35.246.6.37:3002',
     methods: ['GET', 'POST'],
   },
 });
 
 // Start the server
-app.listen(3001, () => {
-  console.log('Server is running on port 3001');
+app.listen(3002, () => {
+  console.log('Server is running on port 3002');
 });
 
 const serviceAccount = require('./credentials/team-2-379813-firebase-adminsdk-z1dop-8c405292cf.json');
@@ -82,7 +82,7 @@ const fetchMessagesFromFirestore = async (group, callback) => {
 // Define a route for retrieving a list of line graph points
 app.get('/api/linegraph', (req, res) => {
   axios
-    .post('http://35.246.6.37:3001/Team-2/getDB/getLineGraph.php', {})
+    .post('http://35.246.6.37:3002/Team-2/getDB/getLineGraph.php', {})
     .then(function (response) {
       // Handle successful graph response
       if (response.data != '') {
@@ -100,7 +100,7 @@ app.get('/api/linegraph', (req, res) => {
 // Define a route for retrieving a list of workload line graph points
 app.get('/api/workloadgraph', (req, res) => {
   axios
-    .post('http://35.246.6.37:3001/Team-2/getDB/getWorkloadGraph.php', {})
+    .post('http://35.246.6.37:3002/Team-2/getDB/getWorkloadGraph.php', {})
     .then(function (response) {
       // Handle successful graph response
       if (response.data != '') {
@@ -119,7 +119,7 @@ app.get('/api/workloadgraph', (req, res) => {
 // Define a route for retrieving a list of users
 app.get('/api/login', (req, res) => {
   axios
-    .post('http://35.246.6.37:3001/Team-2/getDB/verifyLogin.php', {})
+    .post('http://35.246.6.37:3002/Team-2/getDB/verifyLogin.php', {})
     .then(function (response) {
       // Handle successful response
       if (response.data != '') {
@@ -137,7 +137,7 @@ app.get('/api/login', (req, res) => {
 // Define a route for retrieving a list of teamAweekly graph points
 app.get('/api/teamAweekly', (req, res) => {
   axios
-    .post('http://35.246.6.37:3001/Team-2/getDB/getTeamAWeekly.php', {})
+    .post('http://35.246.6.37:3002/Team-2/getDB/getTeamAWeekly.php', {})
     .then(function (response) {
       // Handle successful graph response
       if (response.data != '') {
@@ -155,7 +155,7 @@ app.get('/api/teamAweekly', (req, res) => {
 // Define a route for retrieving a list of team2monthly graph points
 app.get('/api/teamAmonthly', (req, res) => {
   axios
-    .post('http://35.246.6.37:3001/Team-2/getDB/getTeamAMonthly.php', {})
+    .post('http://35.246.6.37:3002/Team-2/getDB/getTeamAMonthly.php', {})
     .then(function (response) {
       // Handle successful graph response
       if (response.data != '') {
