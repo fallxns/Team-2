@@ -16,7 +16,7 @@ app.use(express.json());
 
 const io = new Server(server, {
   cors: {
-    origin: 'http://35.246.6.37:3002',
+    origin: 'http://34.105.142.231:3002',
     methods: ['GET', 'POST'],
   },
 });
@@ -82,7 +82,7 @@ const fetchMessagesFromFirestore = async (group, callback) => {
 // Define a route for retrieving a list of line graph points
 app.get('/api/linegraph', (req, res) => {
   axios
-    .post('http://35.246.6.37:3002/Team-2/getDB/getLineGraph.php', {})
+    .post('http://34.105.142.231:3002/Team-2/getDB/getLineGraph.php', {})
     .then(function (response) {
       // Handle successful graph response
       if (response.data != '') {
@@ -100,7 +100,7 @@ app.get('/api/linegraph', (req, res) => {
 // Define a route for retrieving a list of workload line graph points
 app.get('/api/workloadgraph', (req, res) => {
   axios
-    .post('http://35.246.6.37:3002/Team-2/getDB/getWorkloadGraph.php', {})
+    .post('http://34.105.142.231:3002/Team-2/getDB/getWorkloadGraph.php', {})
     .then(function (response) {
       // Handle successful graph response
       if (response.data != '') {
@@ -119,7 +119,7 @@ app.get('/api/workloadgraph', (req, res) => {
 // Define a route for retrieving a list of users
 app.get('/api/login', (req, res) => {
   axios
-    .post('http://35.246.6.37:3002/Team-2/getDB/verifyLogin.php', {})
+    .post('http://34.105.142.231:3002/Team-2/getDB/verifyLogin.php', {})
     .then(function (response) {
       // Handle successful response
       if (response.data != '') {
@@ -137,7 +137,7 @@ app.get('/api/login', (req, res) => {
 // Define a route for retrieving a list of teamAweekly graph points
 app.get('/api/teamAweekly', (req, res) => {
   axios
-    .post('http://35.246.6.37:3002/Team-2/getDB/getTeamAWeekly.php', {})
+    .post('http://34.105.142.231:3002/Team-2/getDB/getTeamAWeekly.php', {})
     .then(function (response) {
       // Handle successful graph response
       if (response.data != '') {
@@ -155,7 +155,7 @@ app.get('/api/teamAweekly', (req, res) => {
 // Define a route for retrieving a list of team2monthly graph points
 app.get('/api/teamAmonthly', (req, res) => {
   axios
-    .post('http://35.246.6.37:3002/Team-2/getDB/getTeamAMonthly.php', {})
+    .post('http://34.105.142.231:3002/Team-2/getDB/getTeamAMonthly.php', {})
     .then(function (response) {
       // Handle successful graph response
       if (response.data != '') {
