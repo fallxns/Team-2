@@ -21,7 +21,7 @@ const Groups = ({ onGroupSelect }) => {
 
   useEffect(() => {
     axios
-      .get('http://35.246.6.37:3001/groups')
+      .get('http://34.105.142.231:3001/groups')
       .then((response) => {
         setGroups(response.data);
       })
