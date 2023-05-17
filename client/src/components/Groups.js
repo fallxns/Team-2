@@ -31,7 +31,7 @@ const Groups = ({ onGroupSelect }) => {
   const createGroup = () => {
     if (newGroup !== '') {
       axios
-        .post('http://35.246.6.37:3001/groups', { name: newGroup })
+        .post('http://34.105.142.231:3001/groups', { name: newGroup })
         .then((response) => {
           setGroups((prevGroups) => [...prevGroups, response.data]);
           setNewGroup('');
