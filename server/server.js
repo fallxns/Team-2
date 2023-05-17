@@ -16,15 +16,15 @@ app.use(express.json());
 
 const io = new Server(server, {
   cors: {
-    origin: 'http://34.105.142.231/',
+    origin: 'http://34.105.142.231:3001',
     methods: ['GET', 'POST'],
   },
 });
 
 // Start the server
-app.listen(3001, () => {
-  console.log('Server is running on port 3001');
-});
+// app.listen(3001, () => {
+//   console.log('Server is running on port 3001');
+// });
 
 const serviceAccount = require('./credentials/team-2-379813-firebase-adminsdk-z1dop-8c405292cf.json');
 
